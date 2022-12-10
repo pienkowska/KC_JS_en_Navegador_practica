@@ -1,5 +1,7 @@
 const newExpense = document.querySelector('#createExpense');
 const expenseListElement = document.querySelector(".expenses-list");
+const totalListElement = document.querySelector(".totalExpenses")
+const expensesList = []
 
 function printExpense(expense) {
 
@@ -33,11 +35,38 @@ newExpense.addEventListener("click", (event) => {
         concept: conceptFromLocalStorage,
     }
 
+    expensesList.push(expense)
+
     inputAmount.value="";
     inputConcept.value="";
 
     printExpense(expense)
+    addingExpenses(expensesList)
 
 });
 
+function addingExpenses(expensesList) {
+    const amountsList = []
+    expensesList.forEach(expense => {
+        amountsList.push(expense.amount)
+    });
+    
+    let totalAmount = amountsList.reduce((accumulator, currentValue) => accumulator + currentValue, 0)
+    debugger;
 
+    
+    const totalItem = document.createElement("article");
+
+    let totalElement = `
+    <p>${totalAmount}</p>
+  `
+
+    totalItem.innerHTML = totalElement;
+
+    totalListElement.prepend(totalItem);
+    
+
+    //totalListElement.prepend(totalItem);
+    //totalListElement.replaceChild(totalItem)
+    
+}
