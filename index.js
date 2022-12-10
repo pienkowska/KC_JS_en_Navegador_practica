@@ -8,8 +8,12 @@ function printExpense(expense) {
 
     const expenseItem = document.createElement("article");
 
+    const IdCounter = expenseListElement.childElementCount;
+    expenseItem.setAttribute("id", IdCounter)
+
     let expenseElement = `
     <p>Importe: ${expense.amount}, Concepto: ${expense.concept}</p>
+    <button onclick="deleteExpense(${expense.id})">Borrar gasto</button>
   `
 
     expenseItem.innerHTML = expenseElement;
@@ -30,10 +34,17 @@ newExpense.addEventListener("click", (event) => {
     const amountFromLocalStorage = localStorage.getItem('savedAmount');
     const conceptFromLocalStorage = localStorage.getItem('savedConcept');
 
+    const IdCounter = expenseListElement.childElementCount;
+
+    //const expenseType = assignType(amountFromLocalStorage);
+
     let expense = {
         amount: parseInt(amountFromLocalStorage),
         concept: conceptFromLocalStorage,
+        id: IdCounter,
+        //type: expenseType,
     }
+
 
     expensesList.push(expense)
 
@@ -51,19 +62,39 @@ function addingExpenses(expensesList) {
         amountsList.push(expense.amount)
     });
     
-    let totalAmount = amountsList.reduce((accumulator, currentValue) => accumulator + currentValue, 0)
-    debugger;
-
+    let totalAmount = amountsList.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
    
     let totalElement = `
     <p>${totalAmount}</p>
-    <button onclick="deleteExpense()">Borrar gasto</button>`;
+    `;
 
     totalListElement.innerHTML = totalElement;
-    
+
 }
 
 
-async function deleteExpense() {
+function deleteExpense(idToDelete) {
+
+    expensesList.splice(idToDelete, 1)
+    addingExpenses(expensesList)
+
+    const articleToRemove = document.getElementById(idToDelete)
+    articleToRemove.remove()
     
-}
+    addingExpenses(expensesList)
+
+};
+
+function assignType(amountFromLocalStorage) {
+    const expenseType = ""
+    const amountFromLocalStorageAsNumber = parseInt(amountFromLocalStorage)
+
+    if (amountFromLocalStorageAsNumber > 0) {
+        expenseType = "ingreso"
+    } else {
+        expenseType = "gasto"
+    }
+
+    return expenseType
+    
+};
