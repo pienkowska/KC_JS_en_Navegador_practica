@@ -57,8 +57,13 @@ function addingExpenses(expensesList) {
    
     let totalElement = `
     <p>${totalAmount}</p>
-        `
-        
+    <button onclick="deleteExpense()">Borrar gasto</button>`;
+
     totalListElement.innerHTML = totalElement;
+    
+}
+
+
+async function deleteExpense() {
     
 }
