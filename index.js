@@ -54,19 +54,11 @@ function addingExpenses(expensesList) {
     let totalAmount = amountsList.reduce((accumulator, currentValue) => accumulator + currentValue, 0)
     debugger;
 
-    
-    const totalItem = document.createElement("article");
-
+   
     let totalElement = `
     <p>${totalAmount}</p>
-  `
-
-    totalItem.innerHTML = totalElement;
-
-    totalListElement.prepend(totalItem);
-    
-
-    //totalListElement.prepend(totalItem);
-    //totalListElement.replaceChild(totalItem)
+        `
+        
+    totalListElement.innerHTML = totalElement;
     
 }
