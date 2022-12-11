@@ -1,6 +1,8 @@
 const newExpense = document.querySelector('#createExpense');
 const expenseListElement = document.querySelector(".expenses-list");
-const totalListElement = document.querySelector(".totalExpenses")
+const totalListElement = document.querySelector(".totalExpenses");
+const incomingTotalListElement = document.querySelector(".totalIncoming");
+const outgoingTotalListElement = document.querySelector(".totalOutgoing")
 const expensesList = []
 
 function printExpense(expense) {
@@ -36,15 +38,14 @@ newExpense.addEventListener("click", (event) => {
 
     const IdCounter = expenseListElement.childElementCount;
 
-    //const expenseType = assignType(amountFromLocalStorage);
+    const expenseType = assignType(amountFromLocalStorage);
 
     let expense = {
         amount: parseInt(amountFromLocalStorage),
         concept: conceptFromLocalStorage,
         id: IdCounter,
-        //type: expenseType,
+        type: expenseType,
     }
-
 
     expensesList.push(expense)
 
@@ -53,6 +54,8 @@ newExpense.addEventListener("click", (event) => {
 
     printExpense(expense)
     addingExpenses(expensesList)
+    totalIncoming(expensesList)
+    totalOutgoing(expensesList)
 
 });
 
@@ -82,19 +85,61 @@ function deleteExpense(idToDelete) {
     articleToRemove.remove()
     
     addingExpenses(expensesList)
+    totalIncoming(expensesList)
+    totalOutgoing(expensesList)
 
 };
 
-function assignType(amountFromLocalStorage) {
-    const expenseType = ""
-    const amountFromLocalStorageAsNumber = parseInt(amountFromLocalStorage)
+function assignType(amount) {
+    let expenseType = ""
 
-    if (amountFromLocalStorageAsNumber > 0) {
+    if (amount > 0) {
         expenseType = "ingreso"
     } else {
         expenseType = "gasto"
     }
 
+    debugger;
     return expenseType
     
 };
+
+function totalIncoming(expensesList) {
+    const incomingElementsList = expensesList.filter(expense => expense.type === "ingreso")
+
+    debugger
+
+    const incomingsList = []
+    incomingElementsList.forEach(expense => {
+        incomingsList.push(expense.amount)
+    })
+
+    debugger
+
+    let incomingsTotalAmount = incomingsList.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+
+    let incomingsTotalElement = `
+    <p>${incomingsTotalAmount}</p>
+    `;
+
+    incomingTotalListElement.innerHTML = incomingsTotalElement
+
+}
+
+function totalOutgoing(expensesList) {
+    const outgoingElementsList = expensesList.filter(expense => expense.type === "gasto")
+
+    const outgoingsList = []
+    outgoingElementsList.forEach(expense => {
+        outgoingsList.push(expense.amount)
+    })
+
+    let outgoingsTotalAmount = outgoingsList.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+
+    let outgoingTotalElement = `
+    <p>${outgoingsTotalAmount}</p>
+    `;
+
+    outgoingTotalListElement.innerHTML = outgoingTotalElement
+
+}
