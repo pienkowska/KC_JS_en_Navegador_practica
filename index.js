@@ -107,14 +107,10 @@ function assignType(amount) {
 function totalIncoming(expensesList) {
     const incomingElementsList = expensesList.filter(expense => expense.type === "ingreso")
 
-    debugger
-
     const incomingsList = []
     incomingElementsList.forEach(expense => {
         incomingsList.push(expense.amount)
     })
-
-    debugger
 
     let incomingsTotalAmount = incomingsList.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
 
