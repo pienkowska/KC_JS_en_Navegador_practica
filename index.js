@@ -14,8 +14,7 @@ function printExpense(expense) {
     expenseItem.setAttribute("id", IdCounter)
 
     let expenseElement = `
-    <p>Importe: ${expense.amount}, Concepto: ${expense.concept}</p>
-    <button onclick="deleteExpense(${expense.id})">Borrar gasto</button>
+    <p class="expense">Importe: ${expense.amount}, Concepto: ${expense.concept} <button onclick="deleteExpense(${expense.id})" class=buttonRemove> Borrar 🗑️ </button></p>
   `
 
     expenseItem.innerHTML = expenseElement;

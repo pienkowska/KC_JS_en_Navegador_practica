@@ -10,18 +10,26 @@
 <body>
     <h1>Control de gastos</h1>
 
-    <h2>TU AHORRO</h2>
+    <h2>TU AHORRO:</h2>
     <div class="totalExpenses"></div>
-    <div>Ingreso:</div>
-    <div class="totalIncoming"></div>
-    <div>Gasto:</div>
-    <div class="totalOutgoing"></div>
+    
+    <div class="boxes">
+        <div>
+            <h4>Ingreso:</h4>
+            <div class="totalIncoming"></div>
+        </div>
 
-    <h3>Historial</h3>
+        <div>
+        <h4>Gasto:</h4>
+        <div class="totalOutgoing"></div>
+        </div>
+    </div>
+
+    <h3>Historial:</h3>
     <hr class="solid">  
     <section class="expenses-list"></section>
 
-    <h3>Añadir nueva transaccion</h3>
+    <h3>Añadir nueva transaccion:</h3>
     <hr class="solid">
         <form id="createNewExpense" novalidate>
             <div>Concepto:</div>
@@ -33,7 +41,7 @@
             <input id="amount" type="number" placeholder="Introduce cantidad..."/>
             <br>
             <br>
-            <button type="save" id="createExpense">Añadir transaccion</button>
+            <button type="save" id="createExpense" class="buttonAddExpense">Añadir transaccion</button>
             
         </form>
 

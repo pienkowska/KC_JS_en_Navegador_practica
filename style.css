@@ -1,3 +1,84 @@
 hr.solid {
     border-top: 1px solid grey;
+};
+
+:root {
+    font-size: 18px;
+}
+
+body {
+    background-color: #819595;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bold;
+}
+
+.buttonAddExpense {
+    color: #f4f4f9;
+    background-color: #696773;
+    border: 1px;
+    padding: 20px;
+    width: 100%;
+    font-size: 20px;
+
+}
+
+.buttonAddExpense:hover {
+    background-color: #363946;
+}
+
+.buttonRemove {
+    background-color: #f4f4f9;
+    align-content: right;
+    border: 3px;
+    padding: 2px 5px;
+}
+.buttonRemove:hover {
+    background-color: #696773;
+}
+
+
+h1 {
+    background-color: #363946;
+    color: #f4f4f9;
+    text-align: center;
+    height: 60px;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+
+}
+
+h2, .totalExpenses {
+    color: #363946;
+}
+
+.expense {
+    justify-content: center;
+    border-bottom: #696773;
+}
+
+input {
+    background-color:#f4f4f9;
+    width: 50%;
+    font-size: 18px;
+    color: #363946;
+    height: 35px;
+}
+
+.boxes {
+    background-color: #696773;
+    color: #f4f4f9;
+    display: flex;
+    justify-content: space-evenly;
+
+}
+
+.boxes > div {
+    flex: 2;
+    text-align: center;
+
+}
+
+.boxes > div:first-of-type {
+    border-right: 1px solid
 }
